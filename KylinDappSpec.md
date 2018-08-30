@@ -5,6 +5,7 @@
 该接口是在Web页面中嵌入DApp请求用户支付的二维码，使用钱包应用进行扫描，在用户同意的情况下发起转账交易。二维码内容如下： 
 ```
     {
+        "from":"payeaccount"
         "to": "receiveracnt",
         "token": "EOS",
         "chainid":"f0e906",
@@ -17,6 +18,7 @@
 ```
 
 注：
+* from: 支付账户，可选参数
 * to: 接收币的目的账户
 * token: 该币的symbol
 * chainid: 该币所在链chainid 或者 #1 block hash的后6位
@@ -58,9 +60,10 @@ RESPONSE
 # JavaScript 接口规范  
 * ## 支付接口
 ```
-Kylin.{TOKEN}.transfer(to, token, contract, num, memo, gas, gas_price)
+Kylin.{TOKEN}.transfer(from, to, token, contract, num, memo, gas, gas_price)
 
 PARAM:
+    from: String 支付账户，可选参数
     to: String 接收币的目的账户, 
     token: String 该币的symbol
     contract: String 该币的合约地址
