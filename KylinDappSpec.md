@@ -20,7 +20,7 @@
 注：
 * from: 支付账户，可选参数
 * to: 接收币的目的账户
-* token: 该币的symbol
+* token: 该币的symbol
 * chainid: 该币所在链chainid 或者 #1 block hash的后6位
 * contract: 该币的合约地址
 * num: 支付数量
