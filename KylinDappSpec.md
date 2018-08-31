@@ -1,4 +1,4 @@
-### *为了在易用性前提下保留安全性，该文档会分成两部分：第一部分是针对获取用户信息、转账等高频场景定义简单直接的接口，安全性主要依靠用户个人意识；第二部分是针对开放平台提供的安全实施建议方案。*
+### *为了在易用性前提下保留安全性，该文档会分成两部分：第一部分是扫码即用的支付接口，钱包应用需要做好安全性提示；第二部分是针对钱包开放平台提供的整套DApp认证、授权逻辑。*
 
 # Web端接口规范  
 * ## 扫码支付  
@@ -37,7 +37,7 @@
 Callback URL:
     http://xxx.xx/xxx
 
-PARAM
+POST PARAM
     {
         "billid":"39c22df9f92470936cddc1ade0e2f2ea",
         "txid":"xxxxxxxxxxxx"
@@ -158,8 +158,118 @@ PARAM:
 * to: 填写支付参数中的userid，可选参数
 * msg: 其他信息，可选参数
 
+<br/>  
+
+# DApp开放平台认证授权逻辑
+* ## 签名授权机制
+
+DApp在开放平台可以申请自己的secretkey(长度大于32B)进行数据签名，保证数据安全和请求的有效性，签名计算方法为：
+```
+signature = base64(hmac-sha1(secretkey, ( timestamp + ‘\n’+ params_str)))
+
+timestamp: unix 时间戳
+params_str: 参数名name按照字典序从小到大排序，然后 ‘,’.join(name+’:’value)
+```
+HTTPS 请求时 HEAD里面增加 Authorization 字段内容如下：
+```
+	accesskey + ":" + signature
+```
+
+注：需要使用该签名的接口如下
+
+    
 
 
+* ## DApp应用在开放平台中注册
+让DApp注册的目的是明确DApp在当前开放平台的身份信息，推荐钱包平台要启用KYC验证。类似于支付宝商家认证，最终是为了保证用户权益。每个DApp都会分配一个唯一dapp_id用于在平台内部标识。
+```
+    URL:
+        /kylindapp/register
+    POST PARAM: 
+        dapp_name、dapp_logo_256_png、website、contact、phone、description
+    RESPONSE:
+        code: 错误信息代码，0表示成功
+        message
+        dapp_id: DApp的唯一标识，建议使用UUID，保证在不同平台的唯一性
+        platform_id: 开放平台标识
+```
+
+* ## DApp应用申请密钥对
+DApp与开放平台进行交互时需要确认身份，采用隔离性更好的AccessKey 和 SecretKey机制。
+```
+    URL:
+        /kylindapp/request/accesskey
+    POST PARAM: 
+        dapp_id: 112
+        platform_id
+        tag : 申请业务标识 32 B 英文字符，为后面拓展开放平台功能预留 
+    RESPONSE:
+        code: 错误信息代码，0表示成功
+        message 
+        accesskey 
+        secretkey 
+```
+* ## DApp应用在开放平台中解除注册应用信息
+该接口主要是用于注销\锁定一个DApp授权，调用以后该 dapp_id 对应的Accesskey都将会禁止。
+```
+    URL:
+        /kylindapp/unregister
+    POST PARAM: 
+        dapp_id: 112
+        platform_id
+    RESPONSE:
+        code: 错误信息代码，0表示成功
+        message: 
+```
+<br>
+
+* ## DApp钱包应用扫二维码进行登录，适用于Web DApp
+该接口是在Web页面中嵌入DApp的请求登录二维码，使用钱包应用进行扫描。登录二维码内容如下：
+```
+    URL:
+        dappxxx.xx/kylindapp/login/carcode?sessionid=UUID
+```
+注：sessionid 参数可选
+
+流程逻辑：
+	钱包扫码以后获取二维码中的URL，然后带上自己的平台标识，比如 kylinwallet，发起POST请求：
+```
+URL:
+    dappxxx.xx/kylindapp/login/carcode
+    POST:
+        sessionid: UUID，如果二维码中没有，需要生成一个新的UUID
+        platform_id: kylinwallet
+        login_url: https://xxx.xx/kylindapp/login
+    RESPONE:
+        code: 错误信息代码，0表示成功
+        message: 
+```
+DApp收到上面的请求以后，获取到开放平台的登录地址，开始发起开放平台的登录：
+```
+    URL:
+        xxx.xx/kylindapp/login
+    POST:
+        sessionid: UUID
+        accesskey: 
+        callback: 例如https://dappxxx.xx/kylindapp/login/callback
+    RESPONE:
+        code: 错误信息代码，0表示成功
+        message: 
+```
+kylinwallet开放平台收到登录请求，验证权限通过以后，提醒用户是否登录,然后将用户是否确认登录通过callback进行回调:
+```
+    URL:
+        dappxxx.xx/kylindapp/login/callback
+    POST:
+        sessionid: UUID
+        userid: xxxxxxx
+        code: 错误信息代码，0表示成功
+        message: 
+    RESPONE:
+        code: 错误信息代码，0表示成功
+        message: 
+```
+当DApp的callback 成功以后，开放平台标记该用户登录成功，并设置UUID对应的登录有效期。在后续的检查中可以根据UUID来控制一次Session的有效时间。
 
 
 
