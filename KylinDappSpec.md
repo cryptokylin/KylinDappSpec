@@ -49,7 +49,7 @@ RESPONSE
         "message": "错误信息"
     }
 ```
-钱包支付时需要在备注中添加如下形式信息:
+钱包支付时需要在交易备注中添加如下形式信息:
 ```
 {"from":"","to":"","billid":"","msg":""} 
 ```
@@ -67,11 +67,11 @@ RESPONSE
 Kylin.{TOKEN}.transfer(from, to, token, contract, num, memo, gas, gas_price)
 
 PARAM:
-    from: String 支付账户，可选参数
     to: String 接收币的目的账户, 
     token: String 该币的symbol
     contract: String 该币的合约地址
     num: String 支付数量
+    from: String 支付账户，可选参数
     memo: String 转账备注，可选参数
     gas: Number|String|BigNumber btc、etc gas 数量，可选参数
     gas_price: Number|String|BigNumber btc、etc gas 价格，可选参数
@@ -87,6 +87,16 @@ RETURN:
     * eos: EOS token
     * enu: ENU token
 
+钱包支付时需要在交易备注中添加如下形式信息:
+```
+{"from":"","to":"","billid":"","msg":""} 
+```
+注：
+* billid：填写支付参数中的 billid
+* from: 填写支付用户在钱包系统中的userid，可选参数
+* to: 填写支付参数中的userid，可选参数
+* msg: 其他信息，可选参数
+  
 <br/>  
 
 # APP监听消息接口规范 
@@ -138,6 +148,15 @@ PARAM:
     * EOS: eos
     * ENU: enu 
 
+钱包支付时需要在交易备注中添加如下形式信息:
+```
+{"from":"","to":"","billid":"","msg":""} 
+```
+注：
+* billid：填写支付参数中的 billid
+* from: 填写支付用户在钱包系统中的userid，可选参数
+* to: 填写支付参数中的userid，可选参数
+* msg: 其他信息，可选参数
 
 
 
