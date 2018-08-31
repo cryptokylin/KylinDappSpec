@@ -15,7 +15,8 @@
         "num": "1000.03",
         "memo": "123456",
         "cb": "https://xxxx.xxx/xxx",
-        "dappname":"DAPPONE"
+        "dappname":"DAPPONE",
+        "sessionid":"xxxxxxxx"
     }
 ```
 
@@ -31,6 +32,7 @@
 * cb: 钱包支付完成的回调地址，可选参数
 * from: 支付账户，可选参数
 * dappname: DApp的名称, 可选参数
+* sessionid: 调用登录以后获取的sessionid，可选参数
 
 如果回调地址不为空，按照以下逻辑处理：
 ```
@@ -64,7 +66,7 @@ RESPONSE
 # JavaScript 接口规范  
 * ## 支付接口
 ```
-Kylin.{TOKEN}.transfer(from, to, token, contract, num, memo, gas, gas_price)
+Kylin.{TOKEN}.transfer(from, to, token, contract, num, memo, gas, gas_price, sessionid)
 
 PARAM:
     to: String 接收币的目的账户, 
@@ -75,6 +77,7 @@ PARAM:
     memo: String 转账备注，可选参数
     gas: Number|String|BigNumber btc、etc gas 数量，可选参数
     gas_price: Number|String|BigNumber btc、etc gas 价格，可选参数
+    sessionid: 调用登录以后获取的sessionid，可选参数
 
 RETURN:
     Object:
@@ -139,6 +142,7 @@ PARAM:
     gas_price: Number|String|BigNumber btc、etc gas 价格，可选参数
     from: String 支付账户，可选参数
     dappname: DApp的名称，可选参数
+    sessionid: 调用登录以后获取的sessionid，可选参数
     cb: 回调接口，回调参数至少包含如下参数：
          txid: String, 转账id
          billid: String, 传递过来的参数billid
@@ -173,12 +177,9 @@ params_str: 参数名name按照字典序从小到大排序，然后 ‘,’.join
 HTTPS 请求时 HEAD里面增加 Authorization 字段内容如下：
 ```
 	accesskey + ":" + signature
-```
-
-注：需要使用该签名的接口如下
-
-    
-
+``` 
+注:  
+    `/kylindapp/login` 接口需要使用该签名，其余接口参数中包含`sessionid`即可。
 
 * ## DApp应用在开放平台中注册
 让DApp注册的目的是明确DApp在当前开放平台的身份信息，推荐钱包平台要启用KYC验证。类似于支付宝商家认证，最终是为了保证用户权益。每个DApp都会分配一个唯一dapp_id用于在平台内部标识。
@@ -186,12 +187,21 @@ HTTPS 请求时 HEAD里面增加 Authorization 字段内容如下：
     URL:
         /kylindapp/register
     POST PARAM: 
-        dapp_name、dapp_logo_256_png、website、contact、phone、description
+        dapp_name: 本土名称
+        dapp_name_en: 英文名称
+        dapp_symbol: DApp唯一标识，在各个开放平台要一致
+        dapp_logo_256_png: 
+        website: 官网
+        contact: 联系人
+        phone: 联系电话
+        description: DApp其他描述
     RESPONSE:
         code: 错误信息代码，0表示成功
         message
         dapp_id: DApp的唯一标识，建议使用UUID，保证在不同平台的唯一性
         platform_id: 开放平台标识
+        accesskey: 返回的默认accesskey
+        secretkey: 返回的默认secretkey 
 ```
 
 * ## DApp应用申请密钥对
@@ -223,54 +233,52 @@ DApp与开放平台进行交互时需要确认身份，采用隔离性更好的A
 ```
 <br>
 
-* ## DApp钱包应用扫二维码进行登录，适用于Web DApp
+* ## DApp钱包应用扫二维码进行登录，适用于Web
 该接口是在Web页面中嵌入DApp的请求登录二维码，使用钱包应用进行扫描。登录二维码内容如下：
 ```
     URL:
-        dappxxx.xx/kylindapp/login/carcode?sessionid=UUID
+        dappxxx.xx/kylindapp/login/carcode?dapp_symbol=XXXXX
 ```
-注：sessionid 参数可选
 
 流程逻辑：
-	钱包扫码以后获取二维码中的URL，然后带上自己的平台标识，比如 kylinwallet，发起POST请求：
+	钱包扫码以后根据`dapp_symbol`获取DApp相关信息，提醒用户是否确认登录，用户同意后将通知DApp：
 ```
 URL:
     dappxxx.xx/kylindapp/login/carcode
     POST:
-        sessionid: UUID，如果二维码中没有，需要生成一个新的UUID
+        sessionid: 用户同意后产生的UUID
         platform_id: kylinwallet
-        login_url: https://xxx.xx/kylindapp/login
     RESPONE:
         code: 错误信息代码，0表示成功
         message: 
 ```
-DApp收到上面的请求以后，获取到开放平台的登录地址，开始发起开放平台的登录：
-```
-    URL:
-        xxx.xx/kylindapp/login
-    POST:
-        sessionid: UUID
-        accesskey: 
-        callback: 例如https://dappxxx.xx/kylindapp/login/callback
-    RESPONE:
-        code: 错误信息代码，0表示成功
-        message: 
-```
-kylinwallet开放平台收到登录请求，验证权限通过以后，提醒用户是否登录,然后将用户是否确认登录通过callback进行回调:
-```
-    URL:
-        dappxxx.xx/kylindapp/login/callback
-    POST:
-        sessionid: UUID
-        userid: xxxxxxx
-        code: 错误信息代码，0表示成功
-        message: 
-    RESPONE:
-        code: 错误信息代码，0表示成功
-        message: 
-```
-当DApp的callback 成功以后，开放平台标记该用户登录成功，并设置UUID对应的登录有效期。在后续的检查中可以根据UUID来控制一次Session的有效时间。
+DApp收到上面的请求以后，通知Web端并将`sessionid`发送给Web端应用。成功以后，开放平台标记该用户登录成功，并设置UUID对应的登录有效期。在后续的检查中可以根据UUID来控制一次Session的有效时间。
 
+* ## App请求登录授权
+由于存在安装多个钱包的情况，所以需要先看用户使用哪个钱包打开，钱包根据`dapp_symbol`获取DApp相关信息，提醒用户是否确认登录，确认登录后通过`cb`回调应用. 
+```
+kylindapp://wallet/login/request?params=paramsBase64String
 
+PARAM:
+    dapp_symbol: DApp唯一标识，在各个开放平台要一致
+    cb: 回调接口，回调参数至少包含如下参数：
+        code: Int 错误信息代码，0表示成功
+        msg: String, 其他信息
+        sessionid: 用户同意后产生的UUID
+        platform_id: kylinwallet
+``` 
 
+* ## JavaScript请求登录授权
+```
+Kylin.wallet.login(dapp_symbol)
 
+PARAM:
+    dapp_symbol: DApp唯一标识，在各个开放平台要一致
+
+RETURN:
+    Object:
+        code: Int 错误信息代码，0表示成功
+        msg: String, 其他信息
+        sessionid: 用户同意后产生的UUID
+        platform_id: kylinwallet
+```  
