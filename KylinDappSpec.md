@@ -1,4 +1,4 @@
-### *为了在易用性前提下保留安全性，该文档会分成两部分：第一部分是扫码即用的支付接口，钱包应用需要做好安全性提示；第二部分是针对钱包开放平台提供的整套DApp认证、授权逻辑。*
+### *为了在易用性前提下保留安全性，该文档会分成两部分：第一部分是扫码即用的支付接口，钱包应用需要做好安全性提示；第二部分是针对钱包开放平台提供的整套DApp认证、授权逻辑。*
 
 # Web端接口规范  
 * ## 扫码支付  
@@ -194,7 +194,7 @@ HTTPS 请求时 HEAD里面增加 Authorization 字段内容如下：
         website: 官网
         contact: 联系人
         phone: 联系电话
-        description: DApp其他描述
+        description: DApp其他描述
     RESPONSE:
         code: 错误信息代码，0表示成功
         message
@@ -220,7 +220,7 @@ DApp与开放平台进行交互时需要确认身份，采用隔离性更好的A
         secretkey 
 ```
 * ## DApp应用在开放平台中解除注册应用信息
-该接口主要是用于注销\锁定一个DApp授权，调用以后该 dapp_id 对应的Accesskey都将会禁止。
+该接口主要是用于注销\锁定一个DApp授权，调用以后该 dapp_id 对应的Accesskey都将会禁止。
 ```
     URL:
         /kylindapp/unregister
@@ -241,7 +241,7 @@ DApp与开放平台进行交互时需要确认身份，采用隔离性更好的A
 ```
 
 流程逻辑：
-	钱包扫码以后根据`dapp_symbol`获取DApp相关信息，提醒用户是否确认登录，用户同意后将通知DApp：
+	钱包扫码以后根据`dapp_symbol`获取DApp相关信息，提醒用户是否确认登录，用户同意后将通知DApp：
 ```
 URL:
     dappxxx.xx/kylindapp/login/carcode
@@ -255,7 +255,7 @@ URL:
 DApp收到上面的请求以后，通知Web端并将`sessionid`发送给Web端应用。成功以后，开放平台标记该用户登录成功，并设置UUID对应的登录有效期。在后续的检查中可以根据UUID来控制一次Session的有效时间。
 
 * ## App请求登录授权
-由于存在安装多个钱包的情况，所以需要先看用户使用哪个钱包打开，钱包根据`dapp_symbol`获取DApp相关信息，提醒用户是否确认登录，确认登录后通过`cb`回调应用. 
+由于存在安装多个钱包的情况，所以需要先看用户使用哪个钱包打开，钱包根据`dapp_symbol`获取DApp相关信息，提醒用户是否确认登录，确认登录后通过`cb`回调应用. 
 ```
 kylindapp://wallet/login/request?params=paramsBase64String
 
