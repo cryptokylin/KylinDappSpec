@@ -2,11 +2,11 @@
 
 本接口规范由 [CryptoKylin](https://github.com/cryptokylin) 小组与部分钱包同学一起发起制定。KylinDApp Open Platform Specification 主要目的是制定统一的 DApp (包含Web、Native、Hybird) 应用与钱包、交易所开放平台之间的一套接口协议，使得遵循该协议开发的DApp可以在不同的钱包和交易所之间使用，无需再进行接口适配。 
 
-**为了降低使用复杂度，针对转账支付接口(transfer)可以*直接发起调用*，不用提前注册DApp，但是请各钱包应用提醒用户转账风险；除此之外，还可以结合DApp注册机制实现安全可靠的支付功能。**
+**为了降低使用复杂度，针对转账支付接口(transfer)可以*直接发起调用*，不用提前注册DApp，但是请各钱包应用提醒用户转账风险；除此之外，还可以结合DApp注册机制实现安全可靠的支付功能。**
 
-本接口规范起于对EOS、EUN的支持，但是从设计上来说同样支持BTC、ETH等已有其他代币。
+本接口规范起于对EOS、EUN的支持，但是从设计上来说同样支持BTC、ETH等已有其他代币。
 
-为了降低信息维护复杂度，该 [Repository](https://github.com/cryptokylin/KylinDappSpec)会提供已经支持的Token、DApp相关信息，分别为 tokens_info.json、dapp_info.json，不在统计范围内的Token和DApp可以通过Pull Request来提交更新请求。
+为了降低信息维护复杂度，该 [Repository](https://github.com/cryptokylin/KylinDappSpec)会提供已经支持的Token、DApp相关信息，分别为 tokens_info.json、dapp_info.json，不在统计范围内的Token和DApp可以通过Pull Request来提交更新请求。
 
 ### tokens_info.json 示例
 | tokenid | name_en | name_cn | chainid | contract | tokenname | website | 
