@@ -1,6 +1,4 @@
-# 概述与授权
-
-本接口规范由 [CryptoKylin](https://github.com/cryptokylin) 小组与部分钱包同学一起发起制定。KylinDApp Open Platform Specification 主要目的是制定统一的 DApp (包含Web(JS)、Hybird(JSBridge)、Native(System Register Callback)) 应用与钱包、交易所开放平台之间的一套接口协议，使得遵循该协议开发的DApp可以在不同的钱包和交易所之间使用，无需再进行接口适配。 
+# 概述与授权 
 
 **为了降低使用复杂度，针对转账支付接口(transfer)可以*直接发起调用*，不用提前注册DApp，但是请各钱包应用提醒用户转账风险；除此之外，还可以结合DApp注册机制实现安全可靠的支付功能。**
 
