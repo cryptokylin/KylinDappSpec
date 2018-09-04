@@ -53,6 +53,7 @@ HTTPS 请求时 HEAD里面增加 Authorization 字段内容如下：
         dapp_name: 本土名称
         dapp_name_en: 英文名称
         dapp_symbol: DApp唯一标识，在各个开放平台要一致
+        account_info: DApp预先注册的收款账户地址，tokenid 采用 tokens_info.json 中的字段
         dapp_logo_256_png: 
         website: 官网
         contact: 联系人
