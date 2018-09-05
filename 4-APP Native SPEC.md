@@ -58,7 +58,7 @@ CALLBACK: 回调接口，回调参数至少包含如下参数：
 kylindapp://wallet/login/request?params=paramsBase64String
 
 PARAMS:
-	tokenid: tokens_info.json 中的每个数字资产的唯一标识，指定需要哪个币种的账号，可选参数
+    tokenid: tokens_info.json 中的每个数字资产的唯一标识，指定需要哪个币种的账号，可选参数
     dapp_symbol: dapps_info.json 中DApp全网唯一的symbol字段
     authorization: String 认证，格式为 accesskey + ":" + signature
 
@@ -81,7 +81,7 @@ CALLBACK: 回调接口，回调参数至少包含如下参数：
 kylindapp://wallet/sign/request?params=paramsBase64String
 
 PARAMS:
-	tokenid: tokens_info.json 中的每个数字资产的唯一标识，指定需要哪个币种的账号
+    tokenid: tokens_info.json 中的每个数字资产的唯一标识，指定需要哪个币种的账号
     provider: String 提供签名的钱包账号在钱包系统中的userid。如eos中为其eos账号名，eth为公钥地址
     memo: String 获取钱包签名备注，可选参数
     dappsymbol: dapps_info.json 中DApp全网唯一的symbol字段, 可选参数
