@@ -11,17 +11,17 @@
 * ## 钱包回调接口
 钱包完成DApp的调用以后，会发起此回调，回调参数中除了下面给出的**参数**外，还会根据不同接口传递其他参数。
 ```
-    dappxxx_dapp_id://kylin/callback?params=paramsBase64String
+    dappxxx://kylin/callback?params=paramsBase64String
 
     PARAMS:
         code: Int 错误信息代码，0表示成功
         msg: String, 其他信息
         path: String, 处理请求的调用路径，比如 wallet/login/request
         platform_id: String e.g.wallet4bixin
+        authorization: String 将dapp发起请求时所携带的authorization参数原样返回做认证
 ```
-注：回调scheme有两部分组成 dappxxx_dapp_id = dappxxx + '_' + dapp_id
+注：
 * dappxxx: 为dapp客户端自身注册的scheme。可通过dapps_info.json 中DApp全网唯一的symbol查到。
-* dapp_id: 平台为dapp客户端分配的dapp_id。
 
 * ## 支付接口
 ```
@@ -82,7 +82,7 @@ kylindapp://wallet/sign/request?params=paramsBase64String
 
 PARAMS:
     tokenid: tokens_info.json 中的每个数字资产的唯一标识，指定需要哪个币种的账号
-    provider: String 提供签名的钱包账号在钱包系统中的userid。如eos中为其eos账号名，eth为公钥地址
+    account_name: String 提供签名的钱包账号在钱包系统中的userid。如eos中为其eos账号名，eth为公钥地址
     memo: String 获取钱包签名备注，可选参数
     dappsymbol: dapps_info.json 中DApp全网唯一的symbol字段, 可选参数
     authorization: String 认证，格式为 accesskey + ":" + signature
