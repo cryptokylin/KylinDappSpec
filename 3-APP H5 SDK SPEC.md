@@ -1,4 +1,10 @@
-# JavaScript 接口规范  
+# JavaScript 接口规范
+* ## 直接兼容Scatter的接口
+```
+链接地址:
+https://get-scatter.com/docs/dev/getting-started
+```
+
 * ## 支付接口
 ```
 Kylin.{TOKEN}.transfer(from, to, tokenid, num, memo, sessionid)
