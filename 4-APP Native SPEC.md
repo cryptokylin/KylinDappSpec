@@ -21,7 +21,7 @@
         authorization: String 将dapp发起请求时所携带的authorization参数原样返回做认证
 ```
 注：
-* dappxxx: 为dapp客户端自身注册的scheme。可通过dapps_info.json 中DApp全网唯一的symbol查到。
+* dappxxx: 为dapp客户端自身注册的scheme。为调用协议接口中的cb参数。
 
 * ## 支付接口
 ```
@@ -29,27 +29,28 @@ kylindapp://transfer?params=paramsBase64String
 
 PARAMS:
     v: kylinv1, 协议版本
-    to: String 接收币的目的账户, 
+    from: String 支付账户，可选参数
+    to: String 接收币的目的账户,
     tokenid: tokens_info.json 中的每个数字资产的唯一标识
     num: String 支付数量
     memo: String 转账备注，可选参数
-    billid: 当前支付订单ID，可选参数
-    from: String 支付账户，可选参数
+    msg: String, 其他信息，可用作钱包信息呈现，可选参数
+    actionid: 当前支付订单ID，可选参数
     dappsymbol: dapps_info.json 中DApp全网唯一的symbol字段, 可选参数
     authorization: String 认证，格式为 accesskey + ":" + signature
     cb: 指定回调scheme
 
 CALLBACK: 回调接口，回调参数至少包含如下参数：
     txid: String, 转账id
-    billid: String, 传递过来的参数billid
+    actionid: String, 传递过来的参数actionid
 ```  
 
 钱包支付时需要在交易备注中添加如下形式信息:
 ```
-{"from":"","to":"","billid":"","msg":""} 
+{"from":"","to":"","actionid":"","msg":""} 
 ```
 注：
-* billid：填写支付参数中的 billid
+* actionid：填写支付参数中的 actionid
 * from: 填写支付用户在钱包系统中的userid，可选参数
 * to: 填写支付参数中的userid，可选参数
 * msg: 其他信息，可选参数
@@ -61,6 +62,7 @@ kylindapp://wallet/login/request?params=paramsBase64String
 
 PARAMS:
     v: kylinv1, 协议版本
+    msg: String, 其他信息，可用作钱包信息呈现，可选参数
     tokenid: tokens_info.json 中的每个数字资产的唯一标识，指定需要哪个币种的账号，可选参数
     dapp_symbol: dapps_info.json 中DApp全网唯一的symbol字段
     authorization: String 认证，格式为 accesskey + ":" + signature
@@ -88,7 +90,8 @@ PARAMS:
     v: kylinv1, 协议版本
     tokenid: tokens_info.json 中的每个数字资产的唯一标识，指定需要哪个币种的账号
     account_name: String 提供签名的钱包账号在钱包系统中的userid。如eos中为其eos账号名，eth为公钥地址
-    memo: String 获取钱包签名备注，可选参数
+    custom_data: String, 自定义签名附加字段，可选参数
+    msg: String, 其他信息，可用作钱包信息呈现，可选参数
     dappsymbol: dapps_info.json 中DApp全网唯一的symbol字段, 可选参数
     authorization: String 认证，格式为 accesskey + ":" + signature
     cb: 指定回调scheme
@@ -107,14 +110,18 @@ PARAMS:
     tokenid: tokens_info.json 中的每个数字资产的唯一标识，指定需要哪个币种的账号
     dappsymbol: dapps_info.json 中DApp全网唯一的symbol字段, 可选参数
     authorization: String 认证，格式为 accesskey + ":" + signature
+    contract: String 合约账号名
+    msg: String, 其他信息，可用作钱包信息呈现，可选参数
     cb: 指定回调scheme
     action_info: 合法的EOS action格式数据，具体格式见备注
         
 CALLBACK: 回调接口，回调参数至少包含如下参数：
-    sign: String 钱包签名
+    txid: String, 合约操作id
+    actionid: String, 传递过来的参数actionid
 ``` 
 
-注:
+注:   
+* action_info格式  
 ```
     {
         "account":"payeaccount",
@@ -135,39 +142,26 @@ CALLBACK: 回调接口，回调参数至少包含如下参数：
                 }
             }
         ],
+        "options": {
+            broadcast: true
+        },
         "actionid":"39c22df9f92470936cddc1ade0e2f2ea",
     }
 ```
-
 注：
 * account: 当前帐号
+* options: 合约options，可选参数
 * address: 当前帐号对应的公钥地址
 * actionid: 当前标识该此次调用的ID，可选参数
 
-如果回调地址不为空，按照以下逻辑处理：
-```
-Callback URL:
-    http://xxx.xx/xxx
 
-POST PARAM
-    {
-        "actionid":"39c22df9f92470936cddc1ade0e2f2ea",
-        "txid":"xxxxxxxxxxxx"
-    }
-
-RESPONSE
-    {
-        "code":"错误信息代码，0表示成功",
-        "message": "错误信息"
-    }
+钱包调用合约时根据需要，在交易备注中添加如下形式信息:
 ```
-钱包调用合约时需要在交易备注中添加如下形式信息:
-```
-{"from":"","to":"","actionid":"","msg":""} 
+{"from":"","contract":"","actionid":"","msg":""} 
 ```
 注：
 * actionid：填写参数中的 actionid
-* from: 填写支付用户在钱包系统中的userid，可选参数
-* to: 填写支付参数中的userid，可选参数
+* from: 发起合约操作账号名称，可选参数
+* contract: 此合约账号名称，可选参数
 * msg: 其他信息，可选参数
 
