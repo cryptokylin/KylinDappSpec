@@ -6,7 +6,7 @@
         * kylindapp_tokenpacket://
 注：
 * method_path: 调用方法名，比如  transfer, wallet/get_account
-* params: 调用参数，格式如下：paramsJson.toString('utf-8').base64String()
+* params: 调用参数，格式如下：paramsJson.toString("utf-8").base64String()
 
 * ## 钱包回调接口
 钱包完成DApp的调用以后，会发起此回调，回调参数中除了下面给出的**参数**外，还会根据不同接口传递其他参数。
@@ -28,6 +28,7 @@
 kylindapp://transfer?params=paramsBase64String
 
 PARAMS:
+    v: kylinv1, 协议版本
     to: String 接收币的目的账户, 
     tokenid: tokens_info.json 中的每个数字资产的唯一标识
     num: String 支付数量
@@ -36,6 +37,7 @@ PARAMS:
     from: String 支付账户，可选参数
     dappsymbol: dapps_info.json 中DApp全网唯一的symbol字段, 可选参数
     authorization: String 认证，格式为 accesskey + ":" + signature
+    cb: 指定回调scheme
 
 CALLBACK: 回调接口，回调参数至少包含如下参数：
     txid: String, 转账id
@@ -58,9 +60,11 @@ CALLBACK: 回调接口，回调参数至少包含如下参数：
 kylindapp://wallet/login/request?params=paramsBase64String
 
 PARAMS:
+    v: kylinv1, 协议版本
     tokenid: tokens_info.json 中的每个数字资产的唯一标识，指定需要哪个币种的账号，可选参数
     dapp_symbol: dapps_info.json 中DApp全网唯一的symbol字段
     authorization: String 认证，格式为 accesskey + ":" + signature
+    cb: 指定回调scheme
 
 CALLBACK: 回调接口，回调参数至少包含如下参数：
     account_info: Dictionary 获取到的钱包账号信息
@@ -81,13 +85,89 @@ CALLBACK: 回调接口，回调参数至少包含如下参数：
 kylindapp://wallet/sign/request?params=paramsBase64String
 
 PARAMS:
+    v: kylinv1, 协议版本
     tokenid: tokens_info.json 中的每个数字资产的唯一标识，指定需要哪个币种的账号
     account_name: String 提供签名的钱包账号在钱包系统中的userid。如eos中为其eos账号名，eth为公钥地址
     memo: String 获取钱包签名备注，可选参数
     dappsymbol: dapps_info.json 中DApp全网唯一的symbol字段, 可选参数
     authorization: String 认证，格式为 accesskey + ":" + signature
+    cb: 指定回调scheme
         
-
 CALLBACK: 回调接口，回调参数至少包含如下参数：
     sign: String 钱包签名
 ``` 
+
+* ## 执行合约 
+由于EOS以及其众多衍生链支持更丰富的智能合约功能，该接口就是可以针对合法的action进行签名并执行。
+```
+kylindapp://wallet/eos/push_transactions?params=paramsBase64String
+
+PARAMS:
+    v: kylinv1, 协议版本
+    tokenid: tokens_info.json 中的每个数字资产的唯一标识，指定需要哪个币种的账号
+    dappsymbol: dapps_info.json 中DApp全网唯一的symbol字段, 可选参数
+    authorization: String 认证，格式为 accesskey + ":" + signature
+    cb: 指定回调scheme
+    action_info: 合法的EOS action格式数据，具体格式见备注
+        
+CALLBACK: 回调接口，回调参数至少包含如下参数：
+    sign: String 钱包签名
+``` 
+
+注:
+```
+    {
+        "account":"payeaccount",
+        "address": "receiveracnt",
+        "actions": [
+            {
+                account: "eosio.token",
+                name: "transfer",
+                authorization: [{
+                    actor: "aaaabbbbcccc",
+                    permission: "active"
+                }],
+                data: {
+                    from: "aaaabbbbcccc",
+                    to: "itokenpocket",
+                    quantity: "1.3000 EOS",
+                    memo: "something to say"
+                }
+            }
+        ],
+        "actionid":"39c22df9f92470936cddc1ade0e2f2ea",
+    }
+```
+
+注：
+* account: 当前帐号
+* address: 当前帐号对应的公钥地址
+* actionid: 当前标识该此次调用的ID，可选参数
+
+如果回调地址不为空，按照以下逻辑处理：
+```
+Callback URL:
+    http://xxx.xx/xxx
+
+POST PARAM
+    {
+        "actionid":"39c22df9f92470936cddc1ade0e2f2ea",
+        "txid":"xxxxxxxxxxxx"
+    }
+
+RESPONSE
+    {
+        "code":"错误信息代码，0表示成功",
+        "message": "错误信息"
+    }
+```
+钱包调用合约时需要在交易备注中添加如下形式信息:
+```
+{"from":"","to":"","actionid":"","msg":""} 
+```
+注：
+* actionid：填写参数中的 actionid
+* from: 填写支付用户在钱包系统中的userid，可选参数
+* to: 填写支付参数中的userid，可选参数
+* msg: 其他信息，可选参数
+
