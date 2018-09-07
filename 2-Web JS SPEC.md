@@ -149,11 +149,11 @@ RESPONSE
 ```
 钱包调用合约时需要在交易备注中添加如下形式信息:
 ```
-{"from":"","to":"","actionid":"","msg":""} 
+{"from":"","contract":"","actionid":"","msg":""} 
 ```
 注：
 * actionid：填写参数中的 actionid
-* from: 填写支付用户在钱包系统中的userid，可选参数
-* to: 填写支付参数中的userid，可选参数
+* from: 发起合约操作账号名称，可选参数
+* contract: 此合约账号名称，可选参数
 * msg: 其他信息，可选参数
 
