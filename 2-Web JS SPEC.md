@@ -110,6 +110,9 @@ DApp收到上面的请求以后，通知Web端并将`sessionid`发送给Web端�
                 }
             }
         ],
+        "options": {
+            broadcast: true
+        },
         "actionid":"39c22df9f92470936cddc1ade0e2f2ea",
         "cb": "https://xxxx.xxx/xxx",
         "dappsymbol":"DAPPONE",
@@ -121,6 +124,7 @@ DApp收到上面的请求以后，通知Web端并将`sessionid`发送给Web端�
 * v: 支付二维码类型版本信息
 * account: 当前帐号
 * address: 当前帐号对应的公钥地址
+* options: 合约options，可选参数
 * actionid: 当前标识该此次调用的ID，可选参数
 * cb: 钱包支付完成的回调地址，可选参数
 * dappsymbol: dapps_info.json 中DApp全网唯一的symbol字段, 可选参数
