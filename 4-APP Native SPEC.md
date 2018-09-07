@@ -90,6 +90,7 @@ PARAMS:
     v: kylinv1, 协议版本
     tokenid: tokens_info.json 中的每个数字资产的唯一标识，指定需要哪个币种的账号
     account_name: String 提供签名的钱包账号在钱包系统中的userid。如eos中为其eos账号名，eth为公钥地址
+    custom_data: String, 自定义签名附加字段，可选参数
     msg: String, 其他信息，可用作钱包信息呈现，可选参数
     dappsymbol: dapps_info.json 中DApp全网唯一的symbol字段, 可选参数
     authorization: String 认证，格式为 accesskey + ":" + signature
