@@ -110,6 +110,7 @@ PARAMS:
     tokenid: tokens_info.json 中的每个数字资产的唯一标识，指定需要哪个币种的账号
     dappsymbol: dapps_info.json 中DApp全网唯一的symbol字段, 可选参数
     authorization: String 认证，格式为 accesskey + ":" + signature
+    from: String 支付账户，可选参数
     contract: String 合约账号名
     msg: String, 其他信息，可用作钱包信息呈现，可选参数
     cb: 指定回调scheme
@@ -157,11 +158,10 @@ CALLBACK: 回调接口，回调参数至少包含如下参数：
 
 钱包调用合约时根据需要，在交易备注中添加如下形式信息:
 ```
-{"from":"","contract":"","actionid":"","msg":""} 
+{"from":"","actionid":"","msg":""} 
 ```
 注：
 * actionid：填写参数中的 actionid
 * from: 发起合约操作账号名称，可选参数
-* contract: 此合约账号名称，可选参数
 * msg: 其他信息，可选参数
 
