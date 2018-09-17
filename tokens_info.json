@@ -5,8 +5,9 @@
       "name_cn": "柚子",
       "chainid": "aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906",
       "contract": "eosio.token",
-      "tokenname": "EOS",
-      "website": "https://github.com/EOSIO/eos"
+      "token_name": "EOS",
+      "website": "https://github.com/EOSIO/eos",
+      "status": 0
     },
     {
       "tokenid": "enu",
@@ -14,7 +15,8 @@
       "name_cn": "牛油果",
       "chainid": "cf057bbfb72640471fd910bcb67639c22df9f92470936cddc1ade0e2f2e7dc4f",
       "contract": "enu.token",
-      "tokenname": "ENU",
-      "website": "https://github.com/enumivo/enumivo"
+      "token_name": "ENU",
+      "website": "https://github.com/enumivo/enumivo",
+      "status": 0
     }
   ]

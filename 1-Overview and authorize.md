@@ -7,15 +7,16 @@
 为了降低信息维护复杂度，该 [Repository](https://github.com/cryptokylin/KylinDappSpec) 会提供已经支持的Token、DApp相关信息，分别为 tokens_info.json、dapps_info.json，不在统计范围内的Token和DApp可以通过Pull Request来提交更新请求。
 
 ### tokens_info.json 示例
-| tokenid | name_en | name_cn | chainid | contract | tokenname | website | 
+| tokenid | name | chainid | contract | token_name | website | status |
 | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
-| 22572363 | EOS | 柚子 | aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906 | eosio.token | EOS | https://github.com/EOSIO/eos |
-| 5adf002f | ENU | 牛油果 | cf057bbfb72640471fd910bcb67639c22df9f92470936cddc1ade0e2f2e7dc4f | enu.token | ENU | https://github.com/enumivo/enumivo |
-| dfa1bfdc | BTC | 比特币 | 00000000839a8e6886ab5951d76f411475428afc90947ee320161bbf18eb6048 |  | BTC | https://github.com/bitcoin/bitcoin |  
+| 22572363 | {"en":"EOS", "cn":"柚子"} | aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906 | eosio.token | EOS | https://github.com/EOSIO/eos | 0 |
+| 5adf002f | {"en":"ENU", "cn":"牛油果"} | cf057bbfb72640471fd910bcb67639c22df9f92470936cddc1ade0e2f2e7dc4f | enu.token | ENU | https://github.com/enumivo/enumivo | 0 |
+| dfa1bfdc | {"en":"BTC", "cn":"比特币"}  | 00000000839a8e6886ab5951d76f411475428afc90947ee320161bbf18eb6048 |  | BTC | https://github.com/bitcoin/bitcoin | 0 |  
  
 注: 
-* tokenid: 全局唯一的由chainid、contract、tokenname 三者确定的一个ID，计算方式为: hashlib.sha256({chainid+contract+tokenname}).hexdigest()[:8]
+* tokenid: 全局唯一的由chainid、contract、token_name 三者确定的一个ID，计算方式为: hashlib.sha256({chainid+contract+token_name}).hexdigest()[:8]
 * chainid: 该币所在链chainid 或者 NUM #1 block hash
+* status: 0 正常使用；
 
 ### dapps_info.json 示例
 | symbol | dapp_name | dapp_scheme | account_info | dapp_logo_256_png | website | contact | phone | description_cn | description_en |
