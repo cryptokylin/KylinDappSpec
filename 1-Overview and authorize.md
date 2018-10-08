@@ -19,9 +19,9 @@
 * status: 0 正常使用；
 
 ### dapps_info.json 示例
-| symbol | dapp_name | dapp_scheme | account_info | dapp_logo_256_png | website | contact | phone | description_cn | description_en |
-| ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
-| dappone_c391d81c | {"cn":"游戏达人","en":"dappone"} | KylinDappDemo | [{"tokenid":"eos","account":"wallet4bixin","memo":"123123"}] | https://xxxx.xxx/xxx.png | https://xxxx.xxx | xxxxxx | +861521123123 |第一款超级dapp游戏|This is a super DAPP|
+| symbol | dapp_name | dapp_scheme | account_info | org | description |
+| ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
+| dappone_c391d81c | {"cn":"游戏达人","en":"dappone"} | KylinDappDemo | [{"tokenid":"22572363","account":"wallet4bixin","memo":"123123"}] | {"name":"DAPPONE","website":"http://dappone.com/","email":"dappone@outlook.com","branding":{"logo":"http://dappone.com/pic/logo.png","cover":"http://dappone.com/pic/cover.png"},"social_network":{"steemit":"https://steemit.com/eos/@dappone","twitter":"https://twitter.com/CIGEOS","facebook":"https://www.facebook.com/cigeos","telegram":"https://t.me/cigeos"}} | {"cn":"第一款超级dapp游戏","en":"This is a super DAPP"} |
 注: 
 * symbol: 全局唯一的DApp自己的标识，并在各个DApp统一使用，长度尽量短，最长 64 个字符，合法字符 a-z|0-9|_ 
 * account_info: DApp预先注册的收款账户地址，tokenid 采用 tokens_info.json 中的字段
