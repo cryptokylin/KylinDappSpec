@@ -52,16 +52,7 @@ HTTPS 请求时 HEAD里面增加 Authorization 字段内容如下：
     URL:
         /kylindapp/register
     POST PARAM: 
-        dapp_name: 本土名称
-        dapp_name_en: 英文名称
-        dapp_symbol: DApp唯一标识，在各个开放平台要一致
-        account_info: DApp预先注册的收款账户地址，tokenid 采用 tokens_info.json 中的字段
-        dapp_logo_256_png: 
-        website: 官网
-        contact: 联系人
-        phone: 联系电话
-        description_cn: DApp其他描述
-        description_en: DApp Description
+        dapp_symbol: DApp唯一标识，在各个开放平台要一致， dapps_info.json 文件中的 symbol 字段
     RESPONSE:
         code: 错误信息代码，0表示成功
         message: symbol已存在|DAPP名称已被注册|参数异常

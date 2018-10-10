@@ -4,6 +4,7 @@
 ```
     {
         "v":"kylinv1",
+        "ka":"pay",
         "from":"payeaccount",
         "to": "receiveracnt",
         "tokenid": "eos",
@@ -19,6 +20,7 @@
 
 注：
 * v: 支付二维码类型版本信息
+* ka: kylin-action 缩写，表明该二维码的动作，支付为 "pay"
 * to: 接收币的目的账户
 * tokenid: tokens_info.json 中的每个数字资产的唯一标识
 * num: 支付数量
@@ -59,16 +61,27 @@ RESPONSE
 ## 扫码登录
 该接口是在Web页面中嵌入DApp的请求登录二维码，使用钱包应用进行扫描。登录二维码内容如下：
 ```
-    URL:
-        dappxxx.xx/kylindapp/login/carcode?dapp_symbol=XXXXX
+    {
+        "v": "kylinv1",
+        "ka": "login",
+        "url": "dappxxx.xx/kylindapp/login/carcode",
+        "dappsymbol": "DAPPONE"
+    }
 ```
-
+注：
+* v: 版本信息
+* ka: kylin-action 缩写，表明该二维码的动作，登录为 "login"
+* url: 登录回调地址
+* dappsymbol: dapps_info.json 中DApp全网唯一的symbol字段
+  
 流程逻辑：
-	钱包扫码以后根据`dapp_symbol`获取DApp相关信息，提醒用户是否确认登录，用户同意后将通知DApp：
+	钱包扫码以后根据`dappsymbol`获取DApp相关信息，提醒用户是否确认登录，用户同意后将通知DApp：
 ```
 URL:
     dappxxx.xx/kylindapp/login/carcode
     POST:
+        v: 版本信息
+        dappsymbol: dapps_info.json 中DApp全网唯一的symbol字段
         sessionid: 用户同意后产生的UUID
         platform_id: kylinwallet
         account_info: Dictionary 获取到的钱包账号信息
@@ -92,6 +105,7 @@ DApp收到上面的请求以后，通知Web端并将`sessionid`发送给Web端�
 ```
     {
         "v":"kylinv1",
+        "ka":"contract",
         "account":"payeaccount",
         "address": "receiveracnt",
         "actions": [
@@ -122,6 +136,7 @@ DApp收到上面的请求以后，通知Web端并将`sessionid`发送给Web端�
 
 注：
 * v: 支付二维码类型版本信息
+* ka: kylin-action 缩写，表明该二维码的动作，合约调用为 "contract"
 * account: 当前帐号
 * address: 当前帐号对应的公钥地址
 * options: 合约options，可选参数
