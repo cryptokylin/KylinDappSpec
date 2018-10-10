@@ -25,7 +25,7 @@
 
 * ## 支付接口
 ```
-kylindapp://transfer?params=paramsBase64String
+kylindapp://pay?params=paramsBase64String
 
 PARAMS:
     v: kylinv1, 协议版本
@@ -36,6 +36,7 @@ PARAMS:
     memo: String 转账备注，可选参数
     msg: String, 其他信息，可用作钱包信息呈现，可选参数
     actionid: 当前支付订单ID，可选参数
+    userid: 用户身份ID，可选参数
     dappsymbol: dapps_info.json 中DApp全网唯一的symbol字段, 可选参数
     authorization: String 认证，格式为 accesskey + ":" + signature
     cb: 指定回调scheme
@@ -62,9 +63,8 @@ kylindapp://wallet/login/request?params=paramsBase64String
 
 PARAMS:
     v: kylinv1, 协议版本
-    msg: String, 其他信息，可用作钱包信息呈现，可选参数
     tokenid: tokens_info.json 中的每个数字资产的唯一标识，指定需要哪个币种的账号，可选参数
-    dapp_symbol: dapps_info.json 中DApp全网唯一的symbol字段
+    dappsymbol: dapps_info.json 中DApp全网唯一的symbol字段
     authorization: String 认证，格式为 accesskey + ":" + signature
     cb: 指定回调scheme
 
@@ -76,6 +76,7 @@ CALLBACK: 回调接口，回调参数至少包含如下参数：
 * account_info：获取到的钱包账号信息，可能根据不同的公链有不同的字段返回，但是必须包含以下字段：
     * tokenid: tokens_info.json 中的每个数字资产的唯一标识
     * account_name: String 用户在钱包系统中的userid。如eos中为其eos账号名，eth为公钥地址
+    * pubkeys: 针对EOS，需要给出该账户对应的 public keys，比如 {"owner":"xxxxx","active":"xxxx"}
     * nickname: String 昵称，可选参数
     * avatar: String 头像url地址，可选参数
     * balance: double 对应tokenid主代币可用余额，可选参数
@@ -110,8 +111,10 @@ PARAMS:
     tokenid: tokens_info.json 中的每个数字资产的唯一标识，指定需要哪个币种的账号
     dappsymbol: dapps_info.json 中DApp全网唯一的symbol字段, 可选参数
     authorization: String 认证，格式为 accesskey + ":" + signature
-    from: String 支付账户，可选参数
-    contract: String 合约账号名
+    account: 当前帐号
+    address: 当前帐号对应的公钥地址，钱包会拿该地址对应的私钥进行签名
+    options: 合约options，可选参数
+    actionid: 当前标识该此次调用的ID，可选参数
     msg: String, 其他信息，可用作钱包信息呈现，可选参数
     cb: 指定回调scheme
     action_info: 合法的EOS action格式数据，具体格式见备注
@@ -125,8 +128,6 @@ CALLBACK: 回调接口，回调参数至少包含如下参数：
 * action_info格式  
 ```
     {
-        "account":"payeaccount",
-        "address": "receiveracnt",
         "actions": [
             {
                 account: "eosio.token",
@@ -142,11 +143,7 @@ CALLBACK: 回调接口，回调参数至少包含如下参数：
                     memo: "something to say"
                 }
             }
-        ],
-        "options": {
-            broadcast: true
-        },
-        "actionid":"39c22df9f92470936cddc1ade0e2f2ea",
+        ]
     }
 ```
 注：
