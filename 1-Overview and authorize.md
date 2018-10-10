@@ -52,7 +52,7 @@ HTTPS 请求时 HEAD里面增加 Authorization 字段内容如下：
     URL:
         /kylindapp/register
     POST PARAM: 
-        dapp_symbol: DApp唯一标识，在各个开放平台要一致， dapps_info.json 文件中的 symbol 字段
+        dappsymbol: DApp唯一标识，在各个开放平台要一致， dapps_info.json 文件中的 symbol 字段
     RESPONSE:
         code: 错误信息代码，0表示成功
         message: symbol已存在|DAPP名称已被注册|参数异常

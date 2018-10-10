@@ -57,7 +57,7 @@ CALLBACK: 回调接口，回调参数至少包含如下参数：
 * msg: 其他信息，可选参数
 
 * ## 请求登录授权
-由于存在安装多个钱包的情况，所以需要先看用户使用哪个钱包打开，钱包根据`dapp_symbol`获取DApp相关信息，提醒用户是否确认登录，用户只需在钱包选择一个已导入钱包账号进行授权登录. 
+由于存在安装多个钱包的情况，所以需要先看用户使用哪个钱包打开，钱包根据`dappsymbol`获取DApp相关信息，提醒用户是否确认登录，用户只需在钱包选择一个已导入钱包账号进行授权登录. 
 ```
 kylindapp://wallet/login/request?params=paramsBase64String
 
@@ -83,7 +83,7 @@ CALLBACK: 回调接口，回调参数至少包含如下参数：
     * extra: Dictionary 钱包可选附加信息，可选参数
 
 * ## 获取钱包签名
-由于存在安装多个钱包的情况，所以需要先看用户使用哪个钱包打开，钱包根据`dapp_symbol`获取DApp相关信息，提醒用户是否确认授予签名. 
+由于存在安装多个钱包的情况，所以需要先看用户使用哪个钱包打开，钱包根据`dappsymbol`获取DApp相关信息，提醒用户是否确认授予签名. 
 ```
 kylindapp://wallet/sign/request?params=paramsBase64String
 
@@ -117,7 +117,7 @@ PARAMS:
     actionid: 当前标识该此次调用的ID，可选参数
     msg: String, 其他信息，可用作钱包信息呈现，可选参数
     cb: 指定回调scheme
-    action_info: 合法的EOS action格式数据，具体格式见备注
+    actions: 合法的EOS action格式数据，具体格式见备注
         
 CALLBACK: 回调接口，回调参数至少包含如下参数：
     txid: String, 合约操作id
@@ -125,32 +125,25 @@ CALLBACK: 回调接口，回调参数至少包含如下参数：
 ``` 
 
 注:   
-* action_info格式  
+* actions 格式: 
 ```
-    {
-        "actions": [
-            {
-                account: "eosio.token",
-                name: "transfer",
-                authorization: [{
-                    actor: "aaaabbbbcccc",
-                    permission: "active"
-                }],
-                data: {
-                    from: "aaaabbbbcccc",
-                    to: "itokenpocket",
-                    quantity: "1.3000 EOS",
-                    memo: "something to say"
-                }
+    [
+        {
+            account: "eosio.token",
+            name: "transfer",
+            authorization: [{
+                actor: "aaaabbbbcccc",
+                permission: "active"
+            }],
+            data: {
+                from: "aaaabbbbcccc",
+                to: "itokenpocket",
+                quantity: "1.3000 EOS",
+                memo: "something to say"
             }
-        ]
-    }
+        }
+    ]
 ```
-注：
-* account: 当前帐号
-* options: 合约options，可选参数
-* address: 当前帐号对应的公钥地址
-* actionid: 当前标识该此次调用的ID，可选参数
 
 
 钱包调用合约时根据需要，在交易备注中添加如下形式信息:
