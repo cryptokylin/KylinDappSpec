@@ -76,7 +76,7 @@ RESPONSE
 * ka: kylin-action 缩写，表明该二维码的动作，登录为 "login"
 * url: 登录回调地址
 * dappsymbol: dapps_info.json 中DApp全网唯一的symbol字段
-* tokenid: tokens_info.json 中的每个数字资产的唯一标识
+* tokenid: tokens_info.json 中的每个数字资产的唯一标识，此处需要指定tokenid主要是为了针对用户不同币种授权的安全隔离
   
 流程逻辑：
 	钱包扫码以后根据`dappsymbol`获取DApp相关信息，提醒用户是否确认指定`tokenid`的token进行授权登录，用户同意后将通知DApp：
@@ -87,16 +87,16 @@ URL:
         v: 版本信息
         dappsymbol: dapps_info.json 中DApp全网唯一的symbol字段
         sessionid: 用户同意后产生的UUID
-        platform_id: kylinwallet
-        account_info: Dictionary 获取到的钱包账号信息
+        platformid: kylinwallet
+        accountinfo: Dictionary 获取到的钱包账号信息
     RESPONE:
         code: 错误信息代码，0表示成功
         message: 
 ```
 注：
-* account_info：获取到的钱包账号信息，可能根据不同的公链有不同的字段返回，但是必须包含以下字段：
+* accountinfo：获取到的钱包账号信息，可能根据不同的公链有不同的字段返回，但是必须包含以下字段：
     * tokenid: tokens_info.json 中的每个数字资产的唯一标识
-    * account_name: String 用户在钱包系统中的userid。如eos中为其eos账号名，eth为公钥地址
+    * accountname: String 用户在钱包系统中的userid。如eos中为其eos账号名，eth为公钥地址
     * pubkeys: 针对EOS，需要给出该账户对应的 public keys，比如 {"owner":"xxxxx","active":"xxxx"}
     * nickname: String 昵称，可选参数
     * avatar: String 头像url地址，可选参数
@@ -112,6 +112,7 @@ DApp收到上面的请求以后，通知Web端并将`sessionid`发送给Web端�
         "v":"kylinv1",
         "ka":"contract",
         "msg":"给xxx转账",
+        "tokenid":"22572363",
         "account":"payeaccount",
         "address": "xxxxxxxxxxxxxxxx",
         "actions": [
@@ -143,6 +144,7 @@ DApp收到上面的请求以后，通知Web端并将`sessionid`发送给Web端�
 注：
 * v: 支付二维码类型版本信息
 * ka: kylin-action 缩写，表明该二维码的动作，合约调用为 "contract"
+* tokenid: tokens_info.json 中的每个数字资产的唯一标识
 * account: 当前帐号
 * address: 当前帐号对应的公钥地址，钱包会拿该地址对应的私钥进行签名
 * msg:  其他信息，可用作钱包信息呈现，可选参数

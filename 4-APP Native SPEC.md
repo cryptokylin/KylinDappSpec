@@ -17,7 +17,7 @@
         code: Int 错误信息代码，0表示成功
         msg: String, 其他信息
         path: String, 处理请求的调用路径，比如 wallet/login/request
-        platform_id: String e.g.wallet4bixin
+        platformid: String e.g.wallet4bixin
         authorization: String 将dapp发起请求时所携带的authorization参数原样返回做认证
 ```
 注：
@@ -59,23 +59,23 @@ CALLBACK: 回调接口，回调参数至少包含如下参数：
 * ## 请求登录授权
 由于存在安装多个钱包的情况，所以需要先看用户使用哪个钱包打开，钱包根据`dappsymbol`获取DApp相关信息，提醒用户是否确认登录，用户只需在钱包选择一个已导入钱包账号进行授权登录. 
 ```
-kylindapp://wallet/login/request?params=paramsBase64String
+kylindapp://wallet/login?params=paramsBase64String
 
 PARAMS:
     v: kylinv1, 协议版本
-    tokenid: tokens_info.json 中的每个数字资产的唯一标识，指定需要哪个币种的账号，可选参数
+    tokenid: tokens_info.json 中的每个数字资产的唯一标识，此处需要指定tokenid主要是为了针对用户不同币种授权的安全隔离
     dappsymbol: dapps_info.json 中DApp全网唯一的symbol字段
     authorization: String 认证，格式为 accesskey + ":" + signature
     cb: 指定回调scheme
 
 CALLBACK: 回调接口，回调参数至少包含如下参数：
-    account_info: Dictionary 获取到的钱包账号信息
+    accountinfo: Dictionary 获取到的钱包账号信息
 ``` 
 
 注：
-* account_info：获取到的钱包账号信息，可能根据不同的公链有不同的字段返回，但是必须包含以下字段：
+* accountinfo：获取到的钱包账号信息，可能根据不同的公链有不同的字段返回，但是必须包含以下字段：
     * tokenid: tokens_info.json 中的每个数字资产的唯一标识
-    * account_name: String 用户在钱包系统中的userid。如eos中为其eos账号名，eth为公钥地址
+    * accountname: String 用户在钱包系统中的userid。如eos中为其eos账号名，eth为公钥地址
     * pubkeys: 针对EOS，需要给出该账户对应的 public keys，比如 {"owner":"xxxxx","active":"xxxx"}
     * nickname: String 昵称，可选参数
     * avatar: String 头像url地址，可选参数
@@ -85,13 +85,13 @@ CALLBACK: 回调接口，回调参数至少包含如下参数：
 * ## 获取钱包签名
 由于存在安装多个钱包的情况，所以需要先看用户使用哪个钱包打开，钱包根据`dappsymbol`获取DApp相关信息，提醒用户是否确认授予签名. 
 ```
-kylindapp://wallet/sign/request?params=paramsBase64String
+kylindapp://wallet/sign?params=paramsBase64String
 
 PARAMS:
     v: kylinv1, 协议版本
-    tokenid: tokens_info.json 中的每个数字资产的唯一标识，指定需要哪个币种的账号
-    account_name: String 提供签名的钱包账号在钱包系统中的userid。如eos中为其eos账号名，eth为公钥地址
-    custom_data: String, 自定义签名附加字段，可选参数
+    tokenid: tokens_info.json 中的每个数字资产的唯一标识
+    accountname: String 提供签名的钱包账号在钱包系统中的userid。如eos中为其eos账号名，eth为公钥地址
+    customdata: String, 自定义签名附加字段，可选参数
     msg: String, 其他信息，可用作钱包信息呈现，可选参数
     dappsymbol: dapps_info.json 中DApp全网唯一的symbol字段, 可选参数
     authorization: String 认证，格式为 accesskey + ":" + signature
@@ -104,11 +104,11 @@ CALLBACK: 回调接口，回调参数至少包含如下参数：
 * ## 执行合约 
 由于EOS以及其众多衍生链支持更丰富的智能合约功能，该接口就是可以针对合法的action进行签名并执行。
 ```
-kylindapp://wallet/eos/push_transactions?params=paramsBase64String
+kylindapp://wallet/contract?params=paramsBase64String
 
 PARAMS:
     v: kylinv1, 协议版本
-    tokenid: tokens_info.json 中的每个数字资产的唯一标识，指定需要哪个币种的账号
+    tokenid: tokens_info.json 中的每个数字资产的唯一标识
     dappsymbol: dapps_info.json 中DApp全网唯一的symbol字段, 可选参数
     authorization: String 认证，格式为 accesskey + ":" + signature
     account: 当前帐号
