@@ -52,12 +52,12 @@ HTTPS 请求时 HEAD里面增加 Authorization 字段内容如下：
     URL:
         /kylindapp/register
     POST PARAM: 
-        dapp_symbol: DApp唯一标识，在各个开放平台要一致， dapps_info.json 文件中的 symbol 字段
+        dappsymbol: DApp唯一标识，在各个开放平台要一致， dapps_info.json 文件中的 symbol 字段
     RESPONSE:
         code: 错误信息代码，0表示成功
         message: symbol已存在|DAPP名称已被注册|参数异常
         dapp_id: DApp的唯一标识，建议使用UUID，保证在不同平台的唯一性
-        platform_id: 开放平台标识
+        platformid: 开放平台标识
         accesskey: 返回的默认accesskey
         secretkey: 返回的默认secretkey 
 ```
@@ -69,7 +69,7 @@ DApp与开放平台进行交互时需要确认身份，采用隔离性更好的A
         /kylindapp/request/accesskey
     POST PARAM: 
         dapp_id: 112
-        platform_id
+        platformid
         tag : 申请业务标识 32 B 英文字符，为后面拓展开放平台功能预留 
         sessionid
     RESPONSE:
@@ -85,7 +85,7 @@ DApp与开放平台进行交互时需要确认身份，采用隔离性更好的A
         /kylindapp/unregister
     POST PARAM: 
         dapp_id: 112
-        platform_id
+        platformid
         sessionid
     RESPONSE:
         code: 错误信息代码，0表示成功
