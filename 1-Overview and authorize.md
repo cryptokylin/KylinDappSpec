@@ -7,20 +7,21 @@
 为了降低信息维护复杂度，该 [Repository](https://github.com/cryptokylin/KylinDappSpec) 会提供已经支持的Token、DApp相关信息，分别为 tokens_info.json、dapps_info.json，不在统计范围内的Token和DApp可以通过Pull Request来提交更新请求。
 
 ### tokens_info.json 示例
-| tokenid | name_en | name_cn | chainid | contract | tokenname | website | 
+| tokenid | name | chainid | contract | token_name | website | status |
 | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
-| 22572363 | EOS | 柚子 | aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906 | eosio.token | EOS | https://github.com/EOSIO/eos |
-| 5adf002f | ENU | 牛油果 | cf057bbfb72640471fd910bcb67639c22df9f92470936cddc1ade0e2f2e7dc4f | enu.token | ENU | https://github.com/enumivo/enumivo |
-| dfa1bfdc | BTC | 比特币 | 00000000839a8e6886ab5951d76f411475428afc90947ee320161bbf18eb6048 |  | BTC | https://github.com/bitcoin/bitcoin |  
+| 22572363 | {"en":"EOS", "cn":"柚子"} | aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906 | eosio.token | EOS | https://github.com/EOSIO/eos | 0 |
+| 5adf002f | {"en":"ENU", "cn":"牛油果"} | cf057bbfb72640471fd910bcb67639c22df9f92470936cddc1ade0e2f2e7dc4f | enu.token | ENU | https://github.com/enumivo/enumivo | 0 |
+| dfa1bfdc | {"en":"BTC", "cn":"比特币"}  | 00000000839a8e6886ab5951d76f411475428afc90947ee320161bbf18eb6048 |  | BTC | https://github.com/bitcoin/bitcoin | 0 |  
  
 注: 
-* tokenid: 全局唯一的由chainid、contract、tokenname 三者确定的一个ID，计算方式为: hashlib.sha256({chainid+contract+tokenname}).hexdigest()[:8]
+* tokenid: 全局唯一的由chainid、contract、token_name 三者确定的一个ID，计算方式为: hashlib.sha256({chainid+contract+token_name}).hexdigest()[:8]
 * chainid: 该币所在链chainid 或者 NUM #1 block hash
+* status: 0 正常使用；
 
 ### dapps_info.json 示例
-| symbol | dapp_name | dapp_scheme | account_info | dapp_logo_256_png | website | contact | phone | description_cn | description_en |
-| ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
-| dappone_c391d81c | {"zh":"游戏达人","en":"dappone"} | KylinDappDemo | [{"tokenid":"eos","account":"wallet4bixin","memo":"123123"}] | https://xxxx.xxx/xxx.png | https://xxxx.xxx | xxxxxx | +861521123123 |第一款超级dapp游戏|This is a super DAPP|
+| symbol | dapp_name | dapp_scheme | account_info | org | description |
+| ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
+| dappone_c391d81c | {"cn":"游戏达人","en":"dappone"} | KylinDappDemo | [{"tokenid":"22572363","account":"wallet4bixin","memo":"123123"}] | {"name":"DAPPONE","website":"http://dappone.com/","email":"dappone@outlook.com","branding":{"logo":"http://dappone.com/pic/logo.png","cover":"http://dappone.com/pic/cover.png"},"social_network":{"steemit":"https://steemit.com/eos/@dappone","twitter":"https://twitter.com/CIGEOS","facebook":"https://www.facebook.com/cigeos","telegram":"https://t.me/cigeos"}} | {"cn":"第一款超级dapp游戏","en":"This is a super DAPP"} |
 注: 
 * symbol: 全局唯一的DApp自己的标识，并在各个DApp统一使用，长度尽量短，最长 64 个字符，合法字符 a-z|0-9|_ 
 * account_info: DApp预先注册的收款账户地址，tokenid 采用 tokens_info.json 中的字段
@@ -51,21 +52,12 @@ HTTPS 请求时 HEAD里面增加 Authorization 字段内容如下：
     URL:
         /kylindapp/register
     POST PARAM: 
-        dapp_name: 本土名称
-        dapp_name_en: 英文名称
-        dapp_symbol: DApp唯一标识，在各个开放平台要一致
-        account_info: DApp预先注册的收款账户地址，tokenid 采用 tokens_info.json 中的字段
-        dapp_logo_256_png: 
-        website: 官网
-        contact: 联系人
-        phone: 联系电话
-        description_cn: DApp其他描述
-        description_en: DApp Description
+        dappsymbol: DApp唯一标识，在各个开放平台要一致， dapps_info.json 文件中的 symbol 字段
     RESPONSE:
         code: 错误信息代码，0表示成功
         message: symbol已存在|DAPP名称已被注册|参数异常
         dapp_id: DApp的唯一标识，建议使用UUID，保证在不同平台的唯一性
-        platform_id: 开放平台标识
+        platformid: 开放平台标识
         accesskey: 返回的默认accesskey
         secretkey: 返回的默认secretkey 
 ```
@@ -77,7 +69,7 @@ DApp与开放平台进行交互时需要确认身份，采用隔离性更好的A
         /kylindapp/request/accesskey
     POST PARAM: 
         dapp_id: 112
-        platform_id
+        platformid
         tag : 申请业务标识 32 B 英文字符，为后面拓展开放平台功能预留 
         sessionid
     RESPONSE:
@@ -93,7 +85,7 @@ DApp与开放平台进行交互时需要确认身份，采用隔离性更好的A
         /kylindapp/unregister
     POST PARAM: 
         dapp_id: 112
-        platform_id
+        platformid
         sessionid
     RESPONSE:
         code: 错误信息代码，0表示成功
