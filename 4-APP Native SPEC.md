@@ -104,7 +104,7 @@ CALLBACK: 回调接口，回调参数至少包含如下参数：
 * ## 执行合约 
 由于EOS以及其众多衍生链支持更丰富的智能合约功能，该接口就是可以针对合法的action进行签名并执行。
 ```
-kylindapp://wallet/contract?params=paramsBase64String
+kylindapp://contract?params=paramsBase64String
 
 PARAMS:
     v: kylinv1, 协议版本

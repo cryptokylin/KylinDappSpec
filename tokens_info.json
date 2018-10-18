@@ -1,8 +1,12 @@
 [
     {
       "tokenid": "eos",
-      "name_en": "EOS",
-      "name_cn": "柚子",
+      "name": {
+        "en": "EOS",
+        "cn": "柚子"
+      },
+      "symbol": "EOS",
+      "precision": 4,
       "chainid": "aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906",
       "contract": "eosio.token",
       "token_name": "EOS",
@@ -11,8 +15,12 @@
     },
     {
       "tokenid": "enu",
-      "name_en": "ENU",
-      "name_cn": "牛油果",
+      "name": {
+        "en": "ENU",
+        "cn": "牛油果"
+      },
+      "symbol": "ENU",
+      "precision": 4,
       "chainid": "cf057bbfb72640471fd910bcb67639c22df9f92470936cddc1ade0e2f2e7dc4f",
       "contract": "enu.token",
       "token_name": "ENU",

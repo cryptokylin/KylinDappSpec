@@ -1,0 +1,565 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3C1AF33A2175D8B5000324CD /* KylinSDKSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1AF32A2175D8B5000324CD /* KylinSDKSetting.m */; };
+		3C1AF33B2175D8B5000324CD /* KylinSDKImp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1AF32C2175D8B5000324CD /* KylinSDKImp.m */; };
+		3C1AF33C2175D8B5000324CD /* KylinSDKURI.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1AF32F2175D8B5000324CD /* KylinSDKURI.m */; };
+		3C1AF33D2175D8B5000324CD /* NSString+KylinSDKDataConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1AF3322175D8B5000324CD /* NSString+KylinSDKDataConvert.m */; };
+		3C1AF33E2175D8B5000324CD /* NSData+KylinSDKDataConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1AF3342175D8B5000324CD /* NSData+KylinSDKDataConvert.m */; };
+		3C1AF33F2175D8B5000324CD /* NSString+KylinSDKHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1AF3372175D8B5000324CD /* NSString+KylinSDKHelp.m */; };
+		3C1AF3402175D8B5000324CD /* NSDictionary+KylinSDKHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1AF3392175D8B5000324CD /* NSDictionary+KylinSDKHelp.m */; };
+		3C1AF4B72176F14C000324CD /* MeetOneSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1AF4B62176F14C000324CD /* MeetOneSDK.m */; };
+		3C233E5A217095A900C0B64F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C233E59217095A900C0B64F /* AppDelegate.m */; };
+		3C233E5D217095AA00C0B64F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C233E5C217095AA00C0B64F /* ViewController.m */; };
+		3C233E60217095AA00C0B64F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C233E5E217095AA00C0B64F /* Main.storyboard */; };
+		3C233E62217095AB00C0B64F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C233E61217095AB00C0B64F /* Assets.xcassets */; };
+		3C233E65217095AB00C0B64F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C233E63217095AB00C0B64F /* LaunchScreen.storyboard */; };
+		3C233E68217095AB00C0B64F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C233E67217095AB00C0B64F /* main.m */; };
+		3C233E72217095AB00C0B64F /* KylinSDKTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C233E71217095AB00C0B64F /* KylinSDKTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3C233E6E217095AB00C0B64F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3C233E4D217095A900C0B64F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3C233E54217095A900C0B64F;
+			remoteInfo = KylinSDK;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3C1AF3242175D8B5000324CD /* KylinSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KylinSDK.h; sourceTree = "<group>"; };
+		3C1AF3262175D8B5000324CD /* KylinSDKImp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KylinSDKImp.h; sourceTree = "<group>"; };
+		3C1AF3272175D8B5000324CD /* KylinSDKProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KylinSDKProtocol.h; sourceTree = "<group>"; };
+		3C1AF3282175D8B5000324CD /* KylinSDKAuthorizationProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KylinSDKAuthorizationProtocol.h; sourceTree = "<group>"; };
+		3C1AF32A2175D8B5000324CD /* KylinSDKSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KylinSDKSetting.m; sourceTree = "<group>"; };
+		3C1AF32B2175D8B5000324CD /* KylinSDKSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KylinSDKSetting.h; sourceTree = "<group>"; };
+		3C1AF32C2175D8B5000324CD /* KylinSDKImp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KylinSDKImp.m; sourceTree = "<group>"; };
+		3C1AF32F2175D8B5000324CD /* KylinSDKURI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KylinSDKURI.m; sourceTree = "<group>"; };
+		3C1AF3302175D8B5000324CD /* KylinSDKURI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KylinSDKURI.h; sourceTree = "<group>"; };
+		3C1AF3322175D8B5000324CD /* NSString+KylinSDKDataConvert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+KylinSDKDataConvert.m"; sourceTree = "<group>"; };
+		3C1AF3332175D8B5000324CD /* NSString+KylinSDKHelp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+KylinSDKHelp.h"; sourceTree = "<group>"; };
+		3C1AF3342175D8B5000324CD /* NSData+KylinSDKDataConvert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+KylinSDKDataConvert.m"; sourceTree = "<group>"; };
+		3C1AF3352175D8B5000324CD /* NSDictionary+KylinSDKHelp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+KylinSDKHelp.h"; sourceTree = "<group>"; };
+		3C1AF3362175D8B5000324CD /* NSString+KylinSDKDataConvert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+KylinSDKDataConvert.h"; sourceTree = "<group>"; };
+		3C1AF3372175D8B5000324CD /* NSString+KylinSDKHelp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+KylinSDKHelp.m"; sourceTree = "<group>"; };
+		3C1AF3382175D8B5000324CD /* NSData+KylinSDKDataConvert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+KylinSDKDataConvert.h"; sourceTree = "<group>"; };
+		3C1AF3392175D8B5000324CD /* NSDictionary+KylinSDKHelp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+KylinSDKHelp.m"; sourceTree = "<group>"; };
+		3C1AF4B52176F14C000324CD /* MeetOneSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeetOneSDK.h; sourceTree = "<group>"; };
+		3C1AF4B62176F14C000324CD /* MeetOneSDK.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MeetOneSDK.m; sourceTree = "<group>"; };
+		3C233E55217095A900C0B64F /* KylinSDK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KylinSDK.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C233E58217095A900C0B64F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		3C233E59217095A900C0B64F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		3C233E5B217095A900C0B64F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		3C233E5C217095AA00C0B64F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		3C233E5F217095AA00C0B64F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3C233E61217095AB00C0B64F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3C233E64217095AB00C0B64F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3C233E66217095AB00C0B64F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3C233E67217095AB00C0B64F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3C233E6D217095AB00C0B64F /* KylinSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KylinSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C233E71217095AB00C0B64F /* KylinSDKTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KylinSDKTests.m; sourceTree = "<group>"; };
+		3C233E73217095AB00C0B64F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3C233E52217095A900C0B64F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3C233E6A217095AB00C0B64F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3C1AF3232175D8B5000324CD /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				3C1AF3242175D8B5000324CD /* KylinSDK.h */,
+				3C1AF32D2175D8B5000324CD /* Private */,
+				3C1AF3252175D8B5000324CD /* Public */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		3C1AF3252175D8B5000324CD /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				3C1AF3282175D8B5000324CD /* KylinSDKAuthorizationProtocol.h */,
+				3C1AF3262175D8B5000324CD /* KylinSDKImp.h */,
+				3C1AF32C2175D8B5000324CD /* KylinSDKImp.m */,
+				3C1AF3272175D8B5000324CD /* KylinSDKProtocol.h */,
+				3C1AF3292175D8B5000324CD /* Model */,
+			);
+			path = Public;
+			sourceTree = "<group>";
+		};
+		3C1AF3292175D8B5000324CD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3C1AF32B2175D8B5000324CD /* KylinSDKSetting.h */,
+				3C1AF32A2175D8B5000324CD /* KylinSDKSetting.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3C1AF32D2175D8B5000324CD /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				3C1AF3312175D8B5000324CD /* Help */,
+				3C1AF32E2175D8B5000324CD /* Util */,
+			);
+			path = Private;
+			sourceTree = "<group>";
+		};
+		3C1AF32E2175D8B5000324CD /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				3C1AF3302175D8B5000324CD /* KylinSDKURI.h */,
+				3C1AF32F2175D8B5000324CD /* KylinSDKURI.m */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		3C1AF3312175D8B5000324CD /* Help */ = {
+			isa = PBXGroup;
+			children = (
+				3C1AF3382175D8B5000324CD /* NSData+KylinSDKDataConvert.h */,
+				3C1AF3342175D8B5000324CD /* NSData+KylinSDKDataConvert.m */,
+				3C1AF3352175D8B5000324CD /* NSDictionary+KylinSDKHelp.h */,
+				3C1AF3392175D8B5000324CD /* NSDictionary+KylinSDKHelp.m */,
+				3C1AF3362175D8B5000324CD /* NSString+KylinSDKDataConvert.h */,
+				3C1AF3322175D8B5000324CD /* NSString+KylinSDKDataConvert.m */,
+				3C1AF3332175D8B5000324CD /* NSString+KylinSDKHelp.h */,
+				3C1AF3372175D8B5000324CD /* NSString+KylinSDKHelp.m */,
+			);
+			path = Help;
+			sourceTree = "<group>";
+		};
+		3C233E4C217095A900C0B64F = {
+			isa = PBXGroup;
+			children = (
+				3C233E57217095A900C0B64F /* KylinSDK */,
+				3C233E70217095AB00C0B64F /* KylinSDKTests */,
+				3C233E56217095A900C0B64F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3C233E56217095A900C0B64F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3C233E55217095A900C0B64F /* KylinSDK.app */,
+				3C233E6D217095AB00C0B64F /* KylinSDKTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3C233E57217095A900C0B64F /* KylinSDK */ = {
+			isa = PBXGroup;
+			children = (
+				3C233E58217095A900C0B64F /* AppDelegate.h */,
+				3C233E59217095A900C0B64F /* AppDelegate.m */,
+				3C233E61217095AB00C0B64F /* Assets.xcassets */,
+				3C233E66217095AB00C0B64F /* Info.plist */,
+				3C233E63217095AB00C0B64F /* LaunchScreen.storyboard */,
+				3C233E67217095AB00C0B64F /* main.m */,
+				3C233E5E217095AA00C0B64F /* Main.storyboard */,
+				3C1AF4B52176F14C000324CD /* MeetOneSDK.h */,
+				3C1AF4B62176F14C000324CD /* MeetOneSDK.m */,
+				3C1AF3232175D8B5000324CD /* Source */,
+				3C233E5B217095A900C0B64F /* ViewController.h */,
+				3C233E5C217095AA00C0B64F /* ViewController.m */,
+			);
+			path = KylinSDK;
+			sourceTree = "<group>";
+		};
+		3C233E70217095AB00C0B64F /* KylinSDKTests */ = {
+			isa = PBXGroup;
+			children = (
+				3C233E71217095AB00C0B64F /* KylinSDKTests.m */,
+				3C233E73217095AB00C0B64F /* Info.plist */,
+			);
+			path = KylinSDKTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3C233E54217095A900C0B64F /* KylinSDK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3C233E76217095AB00C0B64F /* Build configuration list for PBXNativeTarget "KylinSDK" */;
+			buildPhases = (
+				3C233E51217095A900C0B64F /* Sources */,
+				3C233E52217095A900C0B64F /* Frameworks */,
+				3C233E53217095A900C0B64F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KylinSDK;
+			productName = KylinSDK;
+			productReference = 3C233E55217095A900C0B64F /* KylinSDK.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3C233E6C217095AB00C0B64F /* KylinSDKTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3C233E79217095AB00C0B64F /* Build configuration list for PBXNativeTarget "KylinSDKTests" */;
+			buildPhases = (
+				3C233E69217095AB00C0B64F /* Sources */,
+				3C233E6A217095AB00C0B64F /* Frameworks */,
+				3C233E6B217095AB00C0B64F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3C233E6F217095AB00C0B64F /* PBXTargetDependency */,
+			);
+			name = KylinSDKTests;
+			productName = KylinSDKTests;
+			productReference = 3C233E6D217095AB00C0B64F /* KylinSDKTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3C233E4D217095A900C0B64F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1000;
+				ORGANIZATIONNAME = MEET.ONE;
+				TargetAttributes = {
+					3C233E54217095A900C0B64F = {
+						CreatedOnToolsVersion = 10.0;
+					};
+					3C233E6C217095AB00C0B64F = {
+						CreatedOnToolsVersion = 10.0;
+						TestTargetID = 3C233E54217095A900C0B64F;
+					};
+				};
+			};
+			buildConfigurationList = 3C233E50217095A900C0B64F /* Build configuration list for PBXProject "KylinSDK" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3C233E4C217095A900C0B64F;
+			productRefGroup = 3C233E56217095A900C0B64F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3C233E54217095A900C0B64F /* KylinSDK */,
+				3C233E6C217095AB00C0B64F /* KylinSDKTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3C233E53217095A900C0B64F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C233E65217095AB00C0B64F /* LaunchScreen.storyboard in Resources */,
+				3C233E62217095AB00C0B64F /* Assets.xcassets in Resources */,
+				3C233E60217095AA00C0B64F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3C233E6B217095AB00C0B64F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3C233E51217095A900C0B64F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C1AF33F2175D8B5000324CD /* NSString+KylinSDKHelp.m in Sources */,
+				3C233E5D217095AA00C0B64F /* ViewController.m in Sources */,
+				3C233E68217095AB00C0B64F /* main.m in Sources */,
+				3C1AF33D2175D8B5000324CD /* NSString+KylinSDKDataConvert.m in Sources */,
+				3C1AF33C2175D8B5000324CD /* KylinSDKURI.m in Sources */,
+				3C1AF33E2175D8B5000324CD /* NSData+KylinSDKDataConvert.m in Sources */,
+				3C233E5A217095A900C0B64F /* AppDelegate.m in Sources */,
+				3C1AF33B2175D8B5000324CD /* KylinSDKImp.m in Sources */,
+				3C1AF33A2175D8B5000324CD /* KylinSDKSetting.m in Sources */,
+				3C1AF4B72176F14C000324CD /* MeetOneSDK.m in Sources */,
+				3C1AF3402175D8B5000324CD /* NSDictionary+KylinSDKHelp.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3C233E69217095AB00C0B64F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C233E72217095AB00C0B64F /* KylinSDKTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3C233E6F217095AB00C0B64F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3C233E54217095A900C0B64F /* KylinSDK */;
+			targetProxy = 3C233E6E217095AB00C0B64F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3C233E5E217095AA00C0B64F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3C233E5F217095AA00C0B64F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3C233E63217095AB00C0B64F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3C233E64217095AB00C0B64F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3C233E74217095AB00C0B64F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		3C233E75217095AB00C0B64F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3C233E77217095AB00C0B64F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = KylinSDK/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.cryptokylin.KylinSDK;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3C233E78217095AB00C0B64F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = KylinSDK/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.cryptokylin.KylinSDK;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		3C233E7A217095AB00C0B64F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = KylinSDKTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.cryptokylin.KylinSDK.KylinSDKTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KylinSDK.app/KylinSDK";
+			};
+			name = Debug;
+		};
+		3C233E7B217095AB00C0B64F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = KylinSDKTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.cryptokylin.KylinSDK.KylinSDKTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KylinSDK.app/KylinSDK";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3C233E50217095A900C0B64F /* Build configuration list for PBXProject "KylinSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3C233E74217095AB00C0B64F /* Debug */,
+				3C233E75217095AB00C0B64F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3C233E76217095AB00C0B64F /* Build configuration list for PBXNativeTarget "KylinSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3C233E77217095AB00C0B64F /* Debug */,
+				3C233E78217095AB00C0B64F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3C233E79217095AB00C0B64F /* Build configuration list for PBXNativeTarget "KylinSDKTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3C233E7A217095AB00C0B64F /* Debug */,
+				3C233E7B217095AB00C0B64F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3C233E4D217095A900C0B64F /* Project object */;
+}
