@@ -4,28 +4,44 @@
 
 本接口规范起于对EOS、EUN的支持，但是从设计上来说同样支持BTC、ETH等已有其他数字资产。
 
-为了降低信息维护复杂度，该 [Repository](https://github.com/cryptokylin/KylinDappSpec) 会提供已经支持的Token、DApp相关信息，分别为 tokens_info.json、dapps_info.json，不在统计范围内的Token和DApp可以通过Pull Request来提交更新请求。
+### Token的唯一标识
+由于现在存在POW、DPOS等多种不同链的数字通证，为了唯一标识一个token需要四个字段：
+* chainid: 该币所在链chainid 或者 NUM #0 block hash
+* contract: token的合约地址或者账户地址，可以为空，比如BTC
+* tokenname: token名称
+* precision: 币种精度，十进制，比如 4 就是精确到 10^-4，18 就是 10^-18
 
-### tokens_info.json 示例
-| tokenid | name | chainid | contract | token_name | website | status |
-| ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
-| 22572363 | {"en":"EOS", "cn":"柚子"} | aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906 | eosio.token | EOS | https://github.com/EOSIO/eos | 0 |
-| 5adf002f | {"en":"ENU", "cn":"牛油果"} | cf057bbfb72640471fd910bcb67639c22df9f92470936cddc1ade0e2f2e7dc4f | enu.token | ENU | https://github.com/enumivo/enumivo | 0 |
-| dfa1bfdc | {"en":"BTC", "cn":"比特币"}  | 00000000839a8e6886ab5951d76f411475428afc90947ee320161bbf18eb6048 |  | BTC | https://github.com/bitcoin/bitcoin | 0 |  
+在该 Specification 中，我们统一使用 `tokenid` 来代表一个数字通证的唯一标识，其组成如下：
+```
+    chainid[:8]#contract[:16]#tokenname#precision
+```
+
+比如：
+```
+    EOS: 42f0e906#eosio.token#EOS#4
+    BTC: 0a8ce26f##BTC#8
+    ETH: b1cb8fa3##ETH#18
+    ERC20 EOS: b1cb8fa3#78ecfdb0#EOS#18
+```
+
+### DAPP的唯一标识
+现在有很多支持DAPP的钱包或者平台，为了保证一个DAPP在不同平台上面无缝切换，避免每次调用都需要传递DAPP各种信息，需要有个跨平台的唯一ID来对应每个DAPP，这样方便不同平台进行识别同一个DAPP。
+为了保证更高的安全性，DAPP应该给各平台注册同一个ID，另外提交自己针对每种币的收款账户，防止被其他应用假冒，导致用户资产损失。 
+
+在该 Specification 中，我们统一使用 `symbol` 来代表一个DAPP的唯一标识，为简单起见，采用精确到毫秒的Unix时间戳，示例如下：
+```
+    unix timestamp millisecond, ex: 154017876810
+```
  
-注: 
-* tokenid: 全局唯一的由chainid、contract、token_name 三者确定的一个ID，计算方式为: hashlib.sha256({chainid+contract+token_name}).hexdigest()[:8]
-* chainid: 该币所在链chainid 或者 NUM #1 block hash
-* status: 0 正常使用；
+下面是建议的DAPP提供的信息示例： 
 
-### dapps_info.json 示例
 | symbol | dapp_name | dapp_scheme | account_info | org | description |
 | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
-| dappone_c391d81c | {"cn":"游戏达人","en":"dappone"} | KylinDappDemo | [{"tokenid":"22572363","account":"wallet4bixin","memo":"123123"}] | {"name":"DAPPONE","website":"http://dappone.com/","email":"dappone@outlook.com","branding":{"logo":"http://dappone.com/pic/logo.png","cover":"http://dappone.com/pic/cover.png"},"social_network":{"steemit":"https://steemit.com/eos/@dappone","twitter":"https://twitter.com/CIGEOS","facebook":"https://www.facebook.com/cigeos","telegram":"https://t.me/cigeos"}} | {"cn":"第一款超级dapp游戏","en":"This is a super DAPP"} |
+| 154017876810 | {"cn":"游戏达人","en":"dappone"} | KylinDappDemo | [{"tokenid":"42f0e906#eosio.token#EOS#4","account":"wallet4bixin","memo":"123123"}] | {"name":"DAPPONE","website":"http://dappone.com/","email":"dappone@outlook.com","branding":{"logo":"http://dappone.com/pic/logo.png","cover":"http://dappone.com/pic/cover.png"},"social_network":{"steemit":"https://steemit.com/eos/@dappone","twitter":"https://twitter.com/CIGEOS","facebook":"https://www.facebook.com/cigeos","telegram":"https://t.me/cigeos"}} | {"cn":"第一款超级dapp游戏","en":"This is a super DAPP"} |
 注: 
-* symbol: 全局唯一的DApp自己的标识，并在各个DApp统一使用，长度尽量短，最长 64 个字符，合法字符 a-z|0-9|_ 
-* account_info: DApp预先注册的收款账户地址，tokenid 采用 tokens_info.json 中的字段
-* dapp_scheme: dapp的scheme，可供iOS添加scheme白名单使用
+* symbol: 全局唯一的DApp自己的标识，并在各个DApp统一使用，Unix timestamp 
+* account_info: DApp预先注册的收款账户地址，
+* dapp_scheme: dapp的scheme，可供iOS添加scheme白名单使用 
 
 <br>
 
@@ -52,7 +68,7 @@ HTTPS 请求时 HEAD里面增加 Authorization 字段内容如下：
     URL:
         /kylindapp/register
     POST PARAM: 
-        dappsymbol: DApp唯一标识，在各个开放平台要一致， dapps_info.json 文件中的 symbol 字段
+        dappsymbol: DApp唯一标识，在各个开放平台要一致
     RESPONSE:
         code: 错误信息代码，0表示成功
         message: symbol已存在|DAPP名称已被注册|参数异常
