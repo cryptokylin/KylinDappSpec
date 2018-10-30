@@ -31,13 +31,13 @@ PARAMS:
     v: kylinv1, 协议版本
     from: String 支付账户，可选参数
     to: String 接收币的目的账户,
-    tokenid: tokens_info.json 中的每个数字资产的唯一标识
+    tokenid: 每个数字资产的唯一标识
     num: String 支付数量
     memo: String 转账备注，可选参数
     msg: String, 其他信息，可用作钱包信息呈现，可选参数
     actionid: 当前支付订单ID，可选参数
     userid: 用户身份ID，可选参数
-    dappsymbol: dapps_info.json 中DApp全网唯一的symbol字段, 可选参数
+    dappsymbol: DApp全网唯一的symbol字段, 可选参数
     authorization: String 认证，格式为 accesskey + ":" + signature
     cb: 指定回调scheme
 
@@ -63,8 +63,8 @@ kylindapp://wallet/login?params=paramsBase64String
 
 PARAMS:
     v: kylinv1, 协议版本
-    tokenid: tokens_info.json 中的每个数字资产的唯一标识，此处需要指定tokenid主要是为了针对用户不同币种授权的安全隔离
-    dappsymbol: dapps_info.json 中DApp全网唯一的symbol字段
+    tokenid: 每个数字资产的唯一标识，此处需要指定tokenid主要是为了针对用户不同币种授权的安全隔离
+    dappsymbol: DApp全网唯一的symbol字段
     authorization: String 认证，格式为 accesskey + ":" + signature
     cb: 指定回调scheme
 
@@ -74,7 +74,7 @@ CALLBACK: 回调接口，回调参数至少包含如下参数：
 
 注：
 * accountinfo：获取到的钱包账号信息，可能根据不同的公链有不同的字段返回，但是必须包含以下字段：
-    * tokenid: tokens_info.json 中的每个数字资产的唯一标识
+    * tokenid: 每个数字资产的唯一标识
     * accountname: String 用户在钱包系统中的userid。如eos中为其eos账号名，eth为公钥地址
     * pubkeys: 针对EOS，需要给出该账户对应的 public keys，比如 {"owner":"xxxxx","active":"xxxx"}
     * nickname: String 昵称，可选参数
@@ -89,11 +89,11 @@ kylindapp://wallet/sign?params=paramsBase64String
 
 PARAMS:
     v: kylinv1, 协议版本
-    tokenid: tokens_info.json 中的每个数字资产的唯一标识
+    tokenid: 每个数字资产的唯一标识
     accountname: String 提供签名的钱包账号在钱包系统中的userid。如eos中为其eos账号名，eth为公钥地址
     customdata: String, 自定义签名附加字段，可选参数
     msg: String, 其他信息，可用作钱包信息呈现，可选参数
-    dappsymbol: dapps_info.json 中DApp全网唯一的symbol字段, 可选参数
+    dappsymbol: DApp全网唯一的symbol字段, 可选参数
     authorization: String 认证，格式为 accesskey + ":" + signature
     cb: 指定回调scheme
         
@@ -108,8 +108,8 @@ kylindapp://contract?params=paramsBase64String
 
 PARAMS:
     v: kylinv1, 协议版本
-    tokenid: tokens_info.json 中的每个数字资产的唯一标识
-    dappsymbol: dapps_info.json 中DApp全网唯一的symbol字段, 可选参数
+    tokenid: 每个数字资产的唯一标识
+    dappsymbol: DApp全网唯一的symbol字段, 可选参数
     authorization: String 认证，格式为 accesskey + ":" + signature
     account: 当前帐号
     address: 当前帐号对应的公钥地址，钱包会拿该地址对应的私钥进行签名
